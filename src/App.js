@@ -7,17 +7,18 @@ function App() {
   const [dens, setDens] = useState(getDensState())
   const [points, setPoints] = useState(0)
 
-  // effects
-  useEffect(() => {
-    startGame()
-  }, [])
-
   // helpers
   function startGame() {
     setInterval(() => {
       setDens(getDensState())
     }, 1500)
   }
+
+  // effects
+  useEffect(() => {
+    startGame()
+  }, [])
+
 
   function getDensState() {
     return new Array(9).fill({}).map(() => {
@@ -34,7 +35,7 @@ function App() {
   // renders
   const denElements = dens.map((den, index) => {
     return (
-      <Mole key={`mole-${index}`} />
+      <Mole userPoints={onMoleWhacked} currentDen={den} key={`mole-${index}`} />
     )
   })
 
